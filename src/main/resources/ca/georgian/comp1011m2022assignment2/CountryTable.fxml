@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: DarkGrey;" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.georgian.comp1011m2022guiassignment1.CountryTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: DarkGrey;" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.georgian.comp1011m2022assignment2.CountryTableController">
    <children>
       <TableView fx:id="CountryTable" layoutX="47.0" layoutY="63.0" prefHeight="324.0" prefWidth="459.0" style="-fx-background-color: LightGrey;" stylesheets="@app.css">
         <columns>
