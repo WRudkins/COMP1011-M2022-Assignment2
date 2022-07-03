@@ -55,7 +55,7 @@ public class CountryTableController implements Initializable{
     @FXML
     public void handleGraphButtonClick(ActionEvent actionEvent) throws IOException {
 
-
+        SceneManager.Instance().changeScene(actionEvent, "PopulationGraph.fxml");
     }
 
     @Override

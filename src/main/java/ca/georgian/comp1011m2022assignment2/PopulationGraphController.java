@@ -72,9 +72,7 @@ public class PopulationGraphController implements Initializable {
 
 
     public void handleTableButtonClick(ActionEvent actionEvent) throws IOException {
-        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("CountryTable.fxml"));
-        Stage window = (Stage) ViewTableButton.getScene().getWindow();
-        window.setScene(new Scene(fxmlLoader, 550, 450));
+        SceneManager.Instance().changeScene(actionEvent, "CountryTableController.fxml");
     }
 
 }
