@@ -1,5 +1,7 @@
 package ca.georgian.comp1011m2022assignment2;
 
+import javafx.scene.chart.XYChart;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -68,119 +70,18 @@ public class DBManager
 
         return worldDBs;
     }
-
-    /*public ArrayList<worldDB> readStudentOnTable()
+    public XYChart.Series<String, Integer> getChartData()
     {
-        // Instantiates an ArrayList collection of type Student
-        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
+        XYChart.Series<String, Integer> populations = new XYChart.Series<>();
+        populations.setName("Country Population");
 
-        String sql = "SELECT students.studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major FROM students WHERE province = \"ON\" ";
+        ArrayList<worldDB> worldDBs = readCountryTable();
 
-        try
-                (
-                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
-                        Statement statement = connection.createStatement();
-                        ResultSet resultSet = statement.executeQuery(sql);
-                )
-        {
-            // while there is another record...loop
-            while(resultSet.next())
-            {
-                // deserialize (decode) the data from database table
-                int studentNum = resultSet.getInt("studentNum");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String homeAddress = resultSet.getString("homeAddress");
-                String telephone = resultSet.getString("telephone");
-                String province = resultSet.getString("province");
-                int avgGrade = resultSet.getInt("avgGrade");
-                String major = resultSet.getString("major");
-
-                worldDBs.add( new worldDB(studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major));
-            }
+        for(var Name : worldDBs){
+            var chartData = new XYChart.Data<>(Name.getName(), Name.getPopulation());
+            populations.getData().add(chartData);
         }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
-        }
-
-        return worldDBs;
+        return populations;
     }
-
-    public ArrayList<worldDB> readStudentHonourTable()
-    {
-        // Instantiates an ArrayList collection of type Student (empty container)
-        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
-
-        String sql = "SELECT students.studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major FROM students WHERE avgGrade >= 80";
-
-        try
-                (
-                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
-                        Statement statement = connection.createStatement();
-                        ResultSet resultSet = statement.executeQuery(sql);
-                )
-        {
-            // while there is another record...loop
-            while(resultSet.next())
-            {
-                // deserialize (decode) the data from database table
-                int studentNum = resultSet.getInt("studentNum");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String homeAddress = resultSet.getString("homeAddress");
-                String telephone = resultSet.getString("telephone");
-                String province = resultSet.getString("province");
-                int avgGrade = resultSet.getInt("avgGrade");
-                String major = resultSet.getString("major");
-
-                worldDBs.add( new worldDB(studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major));
-            }
-        }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
-        }
-
-        return worldDBs;
-    }
-    public ArrayList<worldDB> readStudentComboTable()
-    {
-        // Instantiates an ArrayList collection of type Student (empty container)
-        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
-
-        String sql = "SELECT students.studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major FROM students WHERE telephone LIKE \"705%\"";
-
-        try
-                (
-                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
-                        Statement statement = connection.createStatement();
-                        ResultSet resultSet = statement.executeQuery(sql);
-                )
-        {
-            // while there is another record...loop
-            while(resultSet.next())
-            {
-                // deserialize (decode) the data from database table
-                int studentNum = resultSet.getInt("studentNum");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String homeAddress = resultSet.getString("homeAddress");
-                String telephone = resultSet.getString("telephone");
-                String province = resultSet.getString("province");
-                int avgGrade = resultSet.getInt("avgGrade");
-                String major = resultSet.getString("major");
-
-                worldDBs.add( new worldDB(studentNum, firstName, lastName, homeAddress, telephone, province, avgGrade, major));
-            }
-        }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
-        }
-
-        return worldDBs;
-    }
-        */
 
 }

@@ -36,16 +36,10 @@ public class PopulationGraphController implements Initializable {
     @FXML
     private BarChart<String, Integer> XYBarChart;
 
-    public void initialize(URL url, ResourceBundle resourcebundle){
-        XYChart.Series<String, Integer> series1 = new XYChart.Series();
-        series1.setName("Countries");
-        series1.getData().add(new XYChart.Data("CHN",1200));
-        series1.getData().add(new XYChart.Data("IND",1000));
-        series1.getData().add(new XYChart.Data("USA",350));
-        series1.getData().add(new XYChart.Data("IDN",270));
-        series1.getData().add(new XYChart.Data("BRA",220));
 
-        XYBarChart.getData().addAll(series1);
+    public void initialize(URL url, ResourceBundle resourcebundle){
+
+        XYBarChart.getData().addAll(DBManager.Instance().getChartData());
     }
 
 
@@ -70,7 +64,7 @@ public class PopulationGraphController implements Initializable {
     @FXML
     private Button ViewGraphButton;
 
-
+    @FXML
     public void handleTableButtonClick(ActionEvent actionEvent) throws IOException {
         SceneManager.Instance().changeScene(actionEvent, "CountryTableController.fxml");
     }
