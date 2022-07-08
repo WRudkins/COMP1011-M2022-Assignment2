@@ -70,15 +70,151 @@ public class DBManager
 
         return worldDBs;
     }
+    public ArrayList<worldDB> readCountryTableForGraph()
+    {
+        // Instantiates an ArrayList collection of type Student
+        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
+
+        String sql = "SELECT DISTINCT country.Code, Name, Continent, Region, Population \n" +
+                "FROM country order BY country.Population desc LIMIT 10";
+
+        try
+                (
+                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
+                        Statement statement = connection.createStatement();
+                        ResultSet resultSet = statement.executeQuery(sql);
+                )
+        {
+            // while there is another record...loop
+            while(resultSet.next())
+            {
+                // deserialize (decode) the data from database table
+                String Code = resultSet.getString("Code");
+                String Name = resultSet.getString("Name");
+                String Continent = resultSet.getString("Continent");
+                String Region = resultSet.getString("Region");
+                int Population = resultSet.getInt("Population");
+
+                worldDBs.add( new worldDB(Code, Name, Continent, Region, Population));
+            }
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+        return worldDBs;
+    }
+
     public XYChart.Series<String, Integer> getChartData()
     {
         XYChart.Series<String, Integer> populations = new XYChart.Series<>();
         populations.setName("Country Population");
 
-        ArrayList<worldDB> worldDBs = readCountryTable();
+        ArrayList<worldDB> worldDBs = readCountryTableForGraph();
 
         for(var Name : worldDBs){
             var chartData = new XYChart.Data<>(Name.getName(), Name.getPopulation());
+            populations.getData().add(chartData);
+        }
+        return populations;
+    }
+
+    public ArrayList<worldDB> readCountryTableForGraphContinent()
+    {
+        // Instantiates an ArrayList collection of type Student
+        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
+
+        String sql = "SELECT DISTINCT country.Code, Name, Continent, Region, Population \n" +
+                "FROM country order BY country.Population desc LIMIT 10";
+
+        try
+                (
+                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
+                        Statement statement = connection.createStatement();
+                        ResultSet resultSet = statement.executeQuery(sql);
+                )
+        {
+            // while there is another record...loop
+            while(resultSet.next())
+            {
+                // deserialize (decode) the data from database table
+                String Code = resultSet.getString("Code");
+                String Name = resultSet.getString("Name");
+                String Continent = resultSet.getString("Continent");
+                String Region = resultSet.getString("Region");
+                int Population = resultSet.getInt("Population");
+
+                worldDBs.add( new worldDB(Code, Name, Continent, Region, Population));
+            }
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+        return worldDBs;
+    }
+
+    public XYChart.Series<String, Integer> getChartDataForContinent()
+    {
+        XYChart.Series<String, Integer> populations = new XYChart.Series<>();
+        populations.setName("Continent Population");
+
+        ArrayList<worldDB> worldDBs = readCountryTableForGraphContinent();
+
+        for(var Name : worldDBs){
+            var chartData = new XYChart.Data<>(Name.getContinent(), Name.getPopulation());
+            populations.getData().add(chartData);
+        }
+        return populations;
+    }
+
+    public ArrayList<worldDB> readCountryTableForGraphRegion()
+    {
+        // Instantiates an ArrayList collection of type Student
+        ArrayList<worldDB> worldDBs = new ArrayList<worldDB>();
+
+        String sql = "SELECT DISTINCT country.Code, Name, Continent, Region, Population \n" +
+                "FROM country order BY country.Population desc LIMIT 10";
+
+        try
+                (
+                        Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
+                        Statement statement = connection.createStatement();
+                        ResultSet resultSet = statement.executeQuery(sql);
+                )
+        {
+            // while there is another record...loop
+            while(resultSet.next())
+            {
+                // deserialize (decode) the data from database table
+                String Code = resultSet.getString("Code");
+                String Name = resultSet.getString("Name");
+                String Continent = resultSet.getString("Continent");
+                String Region = resultSet.getString("Region");
+                int Population = resultSet.getInt("Population");
+
+                worldDBs.add( new worldDB(Code, Name, Continent, Region, Population));
+            }
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+        return worldDBs;
+    }
+
+    public XYChart.Series<String, Integer> getChartDataForRegion()
+    {
+        XYChart.Series<String, Integer> populations = new XYChart.Series<>();
+        populations.setName("Region Population");
+
+        ArrayList<worldDB> worldDBs = readCountryTableForGraphRegion();
+
+        for(var Name : worldDBs){
+            var chartData = new XYChart.Data<>(Name.getRegion(), Name.getPopulation());
             populations.getData().add(chartData);
         }
         return populations;

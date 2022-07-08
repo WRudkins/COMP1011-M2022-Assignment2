@@ -69,4 +69,20 @@ public class PopulationGraphController implements Initializable {
         SceneManager.Instance().changeScene(actionEvent, "CountryTableController.fxml");
     }
 
+    @FXML
+    void ApplyFilter(ActionEvent event) {
+        if(ContinentRadioButton.isSelected()){
+            XYBarChart.getData().clear();
+            XYBarChart.getData().addAll(DBManager.Instance().getChartDataForContinent());
+        }
+        if(CountryRadioButton.isSelected()){
+            XYBarChart.getData().clear();
+            XYBarChart.getData().addAll(DBManager.Instance().getChartData());
+        }
+        if(RegionRadioButton.isSelected()){
+            XYBarChart.getData().clear();
+            XYBarChart.getData().addAll(DBManager.Instance().getChartDataForRegion());
+        }
+    }
+
 }

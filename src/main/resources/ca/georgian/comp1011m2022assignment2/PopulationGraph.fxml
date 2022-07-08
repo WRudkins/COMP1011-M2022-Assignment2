@@ -25,9 +25,9 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <RadioButton fx:id="CountryRadioButton" layoutX="87.0" layoutY="412.0" mnemonicParsing="false" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Country" />
-      <RadioButton fx:id="ContinentRadioButton" layoutX="199.0" layoutY="412.0" mnemonicParsing="false" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Continent" />
-      <RadioButton fx:id="RegionRadioButton" layoutX="300.0" layoutY="412.0" mnemonicParsing="false" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Region" />
+      <RadioButton fx:id="CountryRadioButton" layoutX="87.0" layoutY="412.0" mnemonicParsing="false" onAction="#ApplyFilter" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Country" />
+      <RadioButton fx:id="ContinentRadioButton" layoutX="200.0" layoutY="413.0" mnemonicParsing="false" onAction="#ApplyFilter" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Continent" />
+      <RadioButton fx:id="RegionRadioButton" layoutX="300.0" layoutY="412.0" mnemonicParsing="false" onAction="#ApplyFilter" style="-fx-font-family: Calibri; -fx-font-weight: Bold;" text="Region" />
       <Button fx:id="ViewTableButton" layoutX="434.0" layoutY="408.0" mnemonicParsing="false" onAction="#handleTableButtonClick" style="-fx-background-color: LightBlue;" text="View Table">
          <font>
             <Font name="System Bold" size="12.0" />
